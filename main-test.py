@@ -8,7 +8,7 @@ def test_min_cost():
             [60, 50, 20, 80]]
     m = len(cost)
     n = len(cost[0])
-    assert min_cost(cost, m-1, n-1) == 80
+    assert min(min_cost(cost, m-1, n-1)) == 80
     print("min_cost Function works correctly")
 
 if __name__ == '__main__':
