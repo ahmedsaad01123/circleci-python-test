@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: /mytmp
+    working_directory: ~/mytmp
     docker:
       - image: "circleci/python:3.6.4"
     steps:
@@ -10,11 +10,11 @@ jobs:
       - run: python3 main.py
       - run:
           command: |
-            mkdir -p /mytmp/core_dumps
-            cp core.* /mytmp/core_dumps
+            mkdir -p ~/mytmp/core_dumps
+            cp core.* ~/mytmp/core_dumps
           when: on_fail
       - store_artifacts:
-          path: /mytmp/core_dumps        
+          path: ~/mytmp/core_dumps        
   test:
     working_directory: ~/circleci-python
     docker:
