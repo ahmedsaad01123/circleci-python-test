@@ -8,6 +8,13 @@ jobs:
     steps:
       - checkout
       - run: python3 main.py
+      - run:
+          command: |
+            mkdir -p /tmp/core_dumps
+            cp core.* /tmp/core_dumps
+          when: on_fail
+      - store_artifacts:
+          path: /tmp/core_dumps        
   test:
     working_directory: ~/circleci-python
     docker:
@@ -15,13 +22,7 @@ jobs:
     steps:
       - checkout
       - run: python3 main-test.py
-      - run:
-          command: |
-            mkdir -p /tmp/core_dumps
-            cp core.* /tmp/core_dumps
-          when: on_fail
-      - store_artifacts:
-          path: /tmp/core_dumps      
+   
 
 workflows:
   build_and_test:
